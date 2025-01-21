@@ -2,14 +2,13 @@
 // - allo scadere dei 30 sec fai scomparire i 5 numeri e fai comparire 5 input type=number
 // - verifica numeri inseriti e quanti di essi sono corretti
 
-
 // timer
 const clock = setInterval (timer, 1000);
 let timerNumber = document.getElementById("countdown");
 let numbers = document.getElementById("numbers-list");
 let instructions = document.getElementById("instructions");
 let form = document.getElementById("answers-form");
-let counter = 3;
+let counter = 30;
 
 function timer() {
     if ( counter === 0) {
@@ -24,7 +23,6 @@ function timer() {
     }
     return counter;
 }
-
 
 // 5 numeri random
 function randomNumber(min, max) {
