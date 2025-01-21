@@ -27,7 +27,6 @@ function timer() {
 
 
 // 5 numeri random
-
 function randomNumber(min, max) {
     let random = Math.floor(Math.random()*max)+min;
     return random;    
@@ -36,10 +35,35 @@ function randomNumber(min, max) {
 let randomNumberArray = [];
 
 for (let i=0; i<5; i++) {
-    let number = randomNumber(1, 100);
+    let number = randomNumber(1, 50);
     randomNumberArray.push(number);
+    console.log(randomNumberArray);
 }
 
 numbers.innerHTML = randomNumberArray.join(" - ");
 
-// allo scadere dei 30 sec scompaiono i 5 numeri
+// verifica
+let btn = document.getElementsByClassName("btn")[0];
+
+btn.addEventListener("click", function(event) {
+    event.preventDefault();
+    
+    let userNumbers = document.querySelectorAll(".form-control");
+    let correctCount = 0;
+    let correctNumbers = [];
+
+    for (let i=0; i<randomNumberArray.length; i++) {
+        let numbersValue = parseInt(userNumbers[i].value);
+        console.log(numbersValue);
+        if (randomNumberArray.includes(numbersValue)) {
+            correctCount++;
+            correctNumbers.push(numbersValue);
+            console.log(`${numbersValue} è giusto!`)
+        } else {
+            console.log(`${numbersValue} è sbagliato!`)
+        }
+    }
+
+    let message = document.getElementById("message");
+    message.innerHTML = `Hai indovinato ${correctCount} numeri! (${correctNumbers.join(" - ")})`
+})
