@@ -6,11 +6,18 @@
 // timer
 const clock = setInterval (timer, 1000);
 let timerNumber = document.getElementById("countdown");
-let counter = 30;
+let numbers = document.getElementById("numbers-list");
+let instructions = document.getElementById("instructions");
+let form = document.getElementById("answers-form");
+let counter = 3;
 
 function timer() {
     if ( counter === 0) {
         clearInterval(clock);
+        numbers.classList.add("d-none");
+        timerNumber.classList.add("d-none");
+        instructions.innerHTML = "Inserisci tutti i numeri che ricordi (l'ordine non è importante)...";
+        form.classList.remove("d-none");
     } else {
         timerNumber.innerHTML = counter--;
         console.log(counter)
@@ -20,7 +27,6 @@ function timer() {
 
 
 // 5 numeri random
-let numbers = document.getElementById("numbers-list");
 
 function randomNumber(min, max) {
     let random = Math.floor(Math.random()*max)+min;
@@ -34,4 +40,6 @@ for (let i=0; i<5; i++) {
     randomNumberArray.push(number);
 }
 
-numbers.innerHTML = randomNumberArray;
+numbers.innerHTML = randomNumberArray.join(" - ");
+
+// allo scadere dei 30 sec scompaiono i 5 numeri
